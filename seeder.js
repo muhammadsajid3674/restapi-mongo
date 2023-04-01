@@ -1,6 +1,8 @@
 const { connect } = require('./config/db.config');
 const tasks = require('./data/tasks.data');
+const users = require('./data/user.data');
 const { Task } = require('./model/task.model');
+const User = require('./model/user.model');
 
 require('dotenv').config();
 connect();
@@ -8,7 +10,9 @@ connect();
 const importData = async () => {
     try {
         await Task.deleteMany();
+        await User.deleteMany();
         await Task.insertMany(tasks);
+        await User.insertMany(users);
         console.log('Data imported!');
         process.exit();
     } catch (error) {

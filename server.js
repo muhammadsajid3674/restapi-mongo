@@ -1,5 +1,7 @@
 const express = require('express');
 const taskRouter = require('./routes/task.routes');
+const userRouter = require('./routes/user.routes');
+const { notFound, errorHandler } = require('./middleware/error.middeware');
 require('dotenv').config();
 
 const app = express();
@@ -12,5 +14,9 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/todo', taskRouter)
+app.use('/api/user', userRouter)
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server is running on: http://localhost:${PORT}`))
