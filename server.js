@@ -2,6 +2,7 @@ const express = require('express');
 const taskRouter = require('./routes/task.routes');
 const userRouter = require('./routes/user.routes');
 const { notFound, errorHandler } = require('./middleware/error.middeware');
+const checkRouter = require('./routes/check.route');
 require('dotenv').config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/todo', taskRouter)
 app.use('/api/user', userRouter)
+app.use('/api/check', checkRouter)
 
 app.use(notFound);
 app.use(errorHandler);
