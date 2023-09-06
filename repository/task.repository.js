@@ -3,9 +3,6 @@ const logger = require("../logger/api.logger");
 const { Task } = require("../model/task.model");
 
 class TaskRepositroy {
-    constructor() {
-        connect();
-    }
 
     async getTask() {
         const tasks = await Task.find({});
